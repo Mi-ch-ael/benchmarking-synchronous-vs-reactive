@@ -16,7 +16,7 @@ public class SingleController {
         this.singleService = singleService;
     }
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_NDJSON_VALUE)
-    public Mono<DatabaseEntity> getOneByApiId(@PathVariable int id) {
+    public Mono<DatabaseEntity> getOneByApiId(@PathVariable long id) {
         return singleService.getData(id);
     }
     @GetMapping(value = "/", produces = MediaType.APPLICATION_NDJSON_VALUE)

@@ -3,7 +3,6 @@
 --changeset nvoxland:1
 CREATE TABLE IF NOT EXISTS database_entity (
     text_id BIGSERIAL PRIMARY KEY,
-    api_id SERIAL NOT NULL,
     text_content CHAR(1000) NOT NULL
 );
 

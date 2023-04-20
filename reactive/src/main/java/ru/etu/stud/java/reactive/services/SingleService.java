@@ -12,8 +12,8 @@ public class SingleService {
     public SingleService(SingleRepository repository) {
         this.repository = repository;
     }
-    public Mono<DatabaseEntity> getData(int id) {
-        return repository.findByApiId(id);
+    public Mono<DatabaseEntity> getData(long id) {
+        return repository.findById(id);
     }
     public Flux<DatabaseEntity> getData() {
         return repository.findAll();

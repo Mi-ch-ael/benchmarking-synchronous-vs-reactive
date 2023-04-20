@@ -9,7 +9,6 @@ import org.springframework.data.relational.core.mapping.Table;
 public class DatabaseEntity {
     @Id
     private long textId;
-    private int apiId;
     private String textContent;
 }
 

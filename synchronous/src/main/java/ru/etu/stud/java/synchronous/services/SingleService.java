@@ -11,8 +11,8 @@ public class SingleService {
         this.repository = repository;
     }
 
-    public DatabaseEntity getData(int id) {
-        return repository.findByApiId(id).orElseThrow();
+    public DatabaseEntity getData(long id) {
+        return repository.findById(id).orElseThrow();
     }
     public Iterable<DatabaseEntity> getData() {
         return repository.findAll();

@@ -14,7 +14,7 @@ public class SingleController {
         this.singleService = singleService;
     }
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public DatabaseEntity getOneByApiId(@PathVariable int id) {
+    public DatabaseEntity getOneByApiId(@PathVariable long id) {
         return singleService.getData(id);
     }
     @GetMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
