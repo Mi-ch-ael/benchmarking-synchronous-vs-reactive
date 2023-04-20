@@ -27,6 +27,9 @@ public class SingleService {
         return resultBuilder.toString();
     }
     public DatabaseEntity getData(int id) {
-        return repository.findByApiId(id);
+        return repository.findByApiId(id).orElseThrow();
+    }
+    public Iterable<DatabaseEntity> getData() {
+        return repository.findAll();
     }
 }
