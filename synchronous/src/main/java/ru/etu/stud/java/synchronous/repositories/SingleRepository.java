@@ -7,4 +7,5 @@ import ru.etu.stud.java.synchronous.domain.DatabaseEntity;
 
 @Repository
 public interface SingleRepository extends CrudRepository<DatabaseEntity, Long> {
+    DatabaseEntity findByApiId(int id);
 }

@@ -15,7 +15,7 @@ public class SingleController {
         this.singleService = singleService;
     }
     @GetMapping(value = "/{id}", produces = "application/json")
-    public ResponseEntity<DatabaseEntity> getData(@PathVariable Long id) {
+    public ResponseEntity<DatabaseEntity> getData(@PathVariable int id) {
         return new ResponseEntity<>(singleService.getData(id), HttpStatusCode.valueOf(200));
     }
 }

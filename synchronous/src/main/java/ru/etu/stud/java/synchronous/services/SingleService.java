@@ -13,8 +13,9 @@ public class SingleService {
         this.repository = repository;
     }
     public void populateRepositoryOnNormalStartup(int recordsNumber, int stringLength) {
+        this.repository.deleteAll();
         for(int i = 0; i < recordsNumber; ++i) {
-            DatabaseEntity entity = new DatabaseEntity(randomAsciiNonWhitespaceString(stringLength));
+            DatabaseEntity entity = new DatabaseEntity(i+1, randomAsciiNonWhitespaceString(stringLength));
             this.repository.save(entity);
         }
     }
@@ -25,7 +26,7 @@ public class SingleService {
         }
         return resultBuilder.toString();
     }
-    public DatabaseEntity getData(Long id) {
-        return repository.findById(id).orElseThrow();
+    public DatabaseEntity getData(int id) {
+        return repository.findByApiId(id);
     }
 }

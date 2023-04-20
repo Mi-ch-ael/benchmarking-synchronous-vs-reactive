@@ -9,7 +9,7 @@ import ru.etu.stud.java.synchronous.services.SingleService;
 public class Application {
     public static void main(String[] args) {
         ApplicationContext ctx = SpringApplication.run(Application.class, args);
-//        ((SingleService) ctx.getBean("singleService"))
-//                .populateRepositoryOnNormalStartup(100, 100);
+        ((SingleService) ctx.getBean("singleService"))
+                .populateRepositoryOnNormalStartup(100, 100);
     }
 }

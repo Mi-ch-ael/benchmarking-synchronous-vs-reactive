@@ -7,26 +7,36 @@ import jakarta.persistence.*;
 public class DatabaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long text_id;
-    private String text_content;
+    private long textId;
+    private int apiId;
+    private String textContent;
     public DatabaseEntity() {}
-    public DatabaseEntity(String text_content) {
-        this.text_content = text_content;
+    public DatabaseEntity(int id, String textContent) {
+        this.apiId = id;
+        this.textContent = textContent;
     }
 
-    public void setText_id(Long id) {
-        this.text_id = id;
+    public void setTextId(Long id) {
+        this.textId = id;
     }
 
-    public Long getText_id() {
-        return text_id;
+    public Long getTextId() {
+        return textId;
     }
 
-    public String getText_content() {
-        return text_content;
+    public String getTextContent() {
+        return textContent;
     }
 
-    public void setText_content(String text) {
-        this.text_content = text;
+    public void setTextContent(String text) {
+        this.textContent = text;
+    }
+
+    public int getApiId() {
+        return apiId;
+    }
+
+    public void setApiId(int apiId) {
+        this.apiId = apiId;
     }
 }
