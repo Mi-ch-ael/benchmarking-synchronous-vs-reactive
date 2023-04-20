@@ -1,0 +1,33 @@
+version: '3.7'
+
+services:
+  postgresql:
+    image: postgres:15
+    container_name: benchmarking-db
+    ports:
+      - "5440:5432"
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+    networks:
+      - migrations-network
+  liquibase-migrations:
+    image: liquibase/liquibase:4.18
+    depends_on:
+      - postgresql
+    command:
+      #- clear-checksums
+      - --hub-mode=off #
+      - --changelog-file=master.xml #
+      - --driver=org.postgresql.Driver
+      - --url=jdbc:postgresql://benchmarking-db:5432/postgres
+      - --username=root
+      - --password=root
+      - update #
+    volumes:
+      - ./migrations:/liquibase/changelog
+    networks:
+      - migrations-network
+
+networks:
+  migrations-network:
