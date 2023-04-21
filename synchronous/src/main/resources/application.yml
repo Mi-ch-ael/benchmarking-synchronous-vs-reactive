@@ -3,3 +3,10 @@ spring:
     url: jdbc:postgresql://localhost:5440/postgres
     password: root
     username: root
+management:
+  datadog:
+    metrics:
+      export:
+        uri: https://api.datadoghq.eu
+        api-key: ${DATADOG_TOKEN}
+        step: 10s
