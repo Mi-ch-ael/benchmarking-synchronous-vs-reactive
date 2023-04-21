@@ -1,6 +1,5 @@
 package ru.etu.stud.java.synchronous.services;
 
-import io.micrometer.core.annotation.Timed;
 import org.springframework.stereotype.Service;
 import ru.etu.stud.java.synchronous.domain.DatabaseEntity;
 import ru.etu.stud.java.synchronous.repositories.SingleRepository;
@@ -12,11 +11,9 @@ public class SingleService {
         this.repository = repository;
     }
 
-    @Timed("synchronous.one")
     public DatabaseEntity getData(long id) {
-        return repository.findById(id).orElseThrow();
+        return repository.findByTextId(id).orElseThrow();
     }
-    @Timed("synchronous.all")
     public Iterable<DatabaseEntity> getData() {
         return repository.findAll();
     }
