@@ -4,9 +4,22 @@ spring:
     password: root
     username: root
 management:
+  endpoints:
+    web:
+      exposure:
+        include: info, health, metrics
   datadog:
     metrics:
       export:
         uri: https://api.datadoghq.eu
         api-key: ${DATADOG_TOKEN}
         step: 10s
+server:
+  port: 8080
+  tomcat:
+    mbeanregistry:
+      enabled: true
+logging:
+  level:
+    io.micrometer.core.instrument.internal: DEBUG
+    ru.etu.stud.java.synchronous.tools: DEBUG
