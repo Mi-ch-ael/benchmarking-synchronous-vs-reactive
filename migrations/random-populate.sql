@@ -6,8 +6,6 @@ CREATE TABLE IF NOT EXISTS database_entity (
     text_content CHAR(1000) NOT NULL
 );
 
-DELETE FROM database_entity;
-
 INSERT INTO database_entity (text_content)
 SELECT '' from generate_series(1, 100);
 

@@ -12,7 +12,7 @@ public class SingleService {
     }
 
     public DatabaseEntity getData(long id) {
-        return repository.findByTextId(id).orElseThrow();
+        return repository.findById(id).orElseThrow();
     }
     public Iterable<DatabaseEntity> getData() {
         return repository.findAll();
