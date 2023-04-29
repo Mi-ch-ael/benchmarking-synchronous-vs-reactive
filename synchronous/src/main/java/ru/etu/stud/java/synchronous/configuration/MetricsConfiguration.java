@@ -15,16 +15,6 @@ public class MetricsConfiguration {
     public TimedAspect timedAspect(MeterRegistry registry) {
         return new TimedAspect(registry);
     }
-    /*@Bean
-    public Gauge averageThreadBlockedTime(MeterRegistry registry, ThreadObserver threadObserver) {
-        return Gauge.builder(
-                    "synchronous.one.threadBlocked.average",
-                    threadObserver,
-                    ThreadObserver::averageBlockedTime
-                )
-                .description("Average time a thread spends blocked while serving /{id}")
-                .register(registry);
-    }*/
     @Bean
     public GaugeGetOneWrapper averageBlockedTimeGetOne(MeterRegistry registry, ThreadObserver threadObserver) {
         return new GaugeGetOneWrapper(
