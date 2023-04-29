@@ -2,22 +2,19 @@ package ru.etu.stud.java.synchronous.controllers;
 
 import io.micrometer.core.annotation.Timed;
 import io.micrometer.core.instrument.Gauge;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
-import ru.etu.stud.java.synchronous.tools.ThreadObserver;
 import ru.etu.stud.java.synchronous.domain.DatabaseEntity;
 import ru.etu.stud.java.synchronous.services.SingleService;
+import ru.etu.stud.java.synchronous.tools.ThreadObserver;
 
 @RestController
 public class SingleController {
     private final SingleService singleService;
     private final ThreadObserver threadObserver;
     private final Gauge averageBlockTime;
-    private final Logger logger = LoggerFactory.getLogger(ThreadObserver.class);
     public SingleController(SingleService singleService, ThreadObserver threadObserver, Gauge averageBlockTime) {
         this.singleService = singleService;
         this.threadObserver = threadObserver;

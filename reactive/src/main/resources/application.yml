@@ -5,3 +5,8 @@ spring:
     url: r2dbc:postgresql://localhost:5440/postgres
     password: root
     username: root
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info, health, metrics
