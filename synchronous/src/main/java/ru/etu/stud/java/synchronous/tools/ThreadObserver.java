@@ -2,6 +2,7 @@ package ru.etu.stud.java.synchronous.tools;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.lang.management.ManagementFactory;
@@ -9,6 +10,7 @@ import java.lang.management.ThreadMXBean;
 import java.util.*;
 
 @Component
+@Scope("prototype")
 public class ThreadObserver {
     private final ThreadMXBean threadBean;
     private final Logger logger = LoggerFactory.getLogger(ThreadObserver.class);
