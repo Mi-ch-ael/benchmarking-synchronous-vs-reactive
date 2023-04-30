@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS database_entity (
 DELETE FROM database_entity;
 
 INSERT INTO database_entity (text_content)
-SELECT '' from generate_series(1, 100);
+SELECT '' from generate_series(1, 10000);
 
 UPDATE database_entity
 SET text_content = array_to_string(
