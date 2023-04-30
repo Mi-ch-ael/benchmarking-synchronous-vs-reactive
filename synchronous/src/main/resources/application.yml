@@ -4,6 +4,10 @@ spring:
     password: root
     username: root
 management:
+  endpoints:
+    web:
+      exposure:
+        include: info, health, metrics
   datadog:
     metrics:
       export:
