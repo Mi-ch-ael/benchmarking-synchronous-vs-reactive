@@ -15,7 +15,7 @@ public class CpuTimeHolder {
     private final ThreadMXBean threadBean;
     private final Logger logger = LoggerFactory.getLogger(CpuTimeHolder.class);
     private final Map<Long, Long> startCpuTimes = Collections.synchronizedMap(new HashMap<>());
-    private final List<Long> delaysMs = Collections.synchronizedList(new ArrayList<>());
+    private final List<Double> delaysMs = Collections.synchronizedList(new ArrayList<>());
     public CpuTimeHolder() {
         threadBean = ManagementFactory.getThreadMXBean();
         if(!threadBean.isThreadCpuTimeSupported()) {
@@ -30,12 +30,14 @@ public class CpuTimeHolder {
     public void startMeasure(Thread thread) {
         long threadId = thread.getId();
         startCpuTimes.put(threadId, threadBean.getThreadCpuTime(threadId));
+        logger.debug("Started measuring thread #%d \"%s\"".formatted(threadId, thread.getName()));
     }
     public void endMeasure(Thread thread) {
         long threadId = thread.getId();
-        delaysMs.add((threadBean.getThreadCpuTime(threadId) - startCpuTimes.get(threadId)) / 1000000);
+        delaysMs.add((double) (threadBean.getThreadCpuTime(threadId) - startCpuTimes.get(threadId)) / 1000000);
+        logger.debug("Finished measuring thread #%d \"%s\"".formatted(threadId, thread.getName()));
     }
-    public long last() {
+    public double last() {
         if(delaysMs.size() == 0) return -1;
         return delaysMs.get(delaysMs.size() - 1);
     }

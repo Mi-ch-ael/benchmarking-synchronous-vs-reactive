@@ -14,3 +14,6 @@ management:
         uri: https://api.datadoghq.eu
         api-key: ${DATADOG_TOKEN}
         step: 10s
+logging:
+  level:
+    ru.etu.stud.java.synchronous.tools: DEBUG
