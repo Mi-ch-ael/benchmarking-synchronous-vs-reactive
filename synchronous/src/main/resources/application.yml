@@ -1,19 +1,18 @@
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5440/postgres
+    # url: jdbc:postgresql://benchmarking-db:5432/postgres
     password: root
     username: root
 management:
   endpoints:
     web:
       exposure:
-        include: info, health, metrics
-  datadog:
+        include: info, health, metrics, prometheus
+  prometheus:
     metrics:
       export:
-        uri: https://api.datadoghq.eu
-        api-key: ${DATADOG_TOKEN}
-        step: 10s
+        enabled: true
 logging:
   level:
     ru.etu.stud.java.synchronous.tools: DEBUG
