@@ -40,7 +40,7 @@ services:
       - ./observability/prometheus/prometheus.yaml:/etc/prometheus/prometheus.yml
       - ./prometheus:/prometheus
   grafana:
-    image: grafana/grafana
+    build: "./config"
     ports:
       - "3000:3000"
     networks:
