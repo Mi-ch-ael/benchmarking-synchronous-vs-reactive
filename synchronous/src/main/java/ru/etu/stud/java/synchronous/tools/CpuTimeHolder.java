@@ -32,8 +32,22 @@ public class CpuTimeHolder {
             threadBean.setThreadContentionMonitoringEnabled(true);
         }
         this.meterRegistry = meterRegistry;
-        Timer.builder(actionTypesToTimerNames.get("one")).register(meterRegistry);
-        Timer.builder(actionTypesToTimerNames.get("all")).register(meterRegistry);
+        Timer.builder(actionTypesToTimerNames.get("one"))
+                /*.tags(
+                        "class", "ru.etu.stud.java.synchronous.controllers.SingleController",
+                        "exception", "none",
+                        "method", "getOneByApiId"
+                )*/
+                //.tags("operation_type", "one")
+                .register(meterRegistry);
+        Timer.builder(actionTypesToTimerNames.get("all"))
+                /*.tags(
+                        "class", "ru.etu.stud.java.synchronous.controllers.SingleController",
+                        "exception", "none",
+                        "method", "getAll"
+                )*/
+                //.tags("operation_type", "all")
+                .register(meterRegistry);
     }
     public void startMeasure(Thread thread) {
         long threadId = thread.getId();

@@ -28,6 +28,22 @@ services:
       - ./migrations:/liquibase/changelog
     networks:
       - migrations-network
+  prometheus:
+    image: prom/prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./observability/prometheus/prometheus.yaml:/etc/prometheus/prometheus.yml
+      - ./prometheus:/prometheus
+  grafana:
+    image: grafana/grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./config/grafana:/var/lib/grafana:rw
+    environment:
+      - GF_SECURITY_ADMIN_USER=root
+      - GF_SECURITY_ADMIN_PASSWORD=root
 
 networks:
   migrations-network:
