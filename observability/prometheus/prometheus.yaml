@@ -6,4 +6,4 @@ scrape_configs:
     metrics_path: '/actuator/prometheus'
     scrape_interval: 5s
     static_configs:
-      - targets: ['192.168.4.197:8080'] # host.docker.internal not working? TODO
+      - targets: ['192.168.4.197:8080', '192.168.4.197:8090']

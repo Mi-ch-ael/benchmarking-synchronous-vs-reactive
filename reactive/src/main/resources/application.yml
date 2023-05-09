@@ -6,7 +6,10 @@ spring:
     password: root
     username: root
 management:
+  metrics:
+    tags:
+      used: true
   endpoints:
     web:
       exposure:
-        include: info, health, metrics
+        include: info, health, metrics, prometheus, metric
