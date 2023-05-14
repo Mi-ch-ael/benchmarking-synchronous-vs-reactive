@@ -110,7 +110,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "synchronous_db_wait_one_seconds_sum{ used=\"true\"} / on(used) synchronous_controller_one_seconds_sum{ used=\"true\"}",
+          "expr": "synchronous_db_wait_one_seconds_sum{ used=\"true\"} / on(used) synchronous_controller_one_seconds_sum{ used=\"true\",exception=\"none\"}",
           "format": "table",
           "instant": true,
           "legendFormat": "__auto",
@@ -178,7 +178,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "increase(synchronous_db_wait_one_seconds_sum{ used=\"true\"}[5m]) / on(used) increase(synchronous_controller_one_seconds_sum{ used=\"true\"}[5m])",
+          "expr": "increase(synchronous_db_wait_one_seconds_sum{ instance=\"192.168.4.197:8080\"}[5m]) / on(instance) increase(synchronous_controller_one_seconds_sum{ instance=\"192.168.4.197:8080\",exception=\"none\"}[5m])",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
@@ -418,7 +418,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "increase(synchronous_db_wait_one_seconds_sum{ used=\"true\"}[5m]) / on(used) increase(synchronous_controller_one_seconds_sum{ used=\"true\"}[5m])",
+          "expr": "increase(synchronous_db_wait_one_seconds_sum{ instance=\"192.168.4.197:8080\"}[5m]) / on(instance) increase(synchronous_controller_one_seconds_sum{ instance=\"192.168.4.197:8080\",exception=\"none\"}[5m])",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
@@ -544,6 +544,142 @@
         "x": 0,
         "y": 13
       },
+      "id": 200,
+      "panels": [],
+      "title": "CPU",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 5,
+            "pointSize": 15,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"process_cpu_usage\", instance=\"192.168.4.197:8080\", job=\"spring_micrometer\", used=\"true\"}"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#ffffff",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"process_cpu_usage\", instance=\"192.168.4.197:8090\", job=\"spring_micrometer\", used=\"true\"}"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-purple",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 19,
+        "x": 2,
+        "y": 14
+      },
+      "id": 201,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "process_cpu_usage",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Panel Title",
+      "type": "timeseries"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 26
+      },
       "id": 195,
       "panels": [],
       "title": "Process times",
@@ -634,6 +770,21 @@
                 }
               }
             ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{instance=\"192.168.4.197:8090\", job=\"spring_micrometer\", used=\"true\"}"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-purple",
+                  "mode": "fixed"
+                }
+              }
+            ]
           }
         ]
       },
@@ -641,7 +792,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 14
+        "y": 27
       },
       "id": 198,
       "options": {
@@ -663,7 +814,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "increase(synchronous_controller_one_seconds_sum[5m]) / increase(synchronous_controller_one_seconds_count[5m])",
+          "expr": "increase(synchronous_controller_one_seconds_sum{exception=\"none\"}[5m]) / increase(synchronous_controller_one_seconds_count{exception=\"none\"}[5m])",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
@@ -776,7 +927,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 14
+        "y": 27
       },
       "id": 199,
       "options": {
@@ -889,6 +1040,45 @@
                 }
               }
             ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{class=\"ru.etu.stud.java.synchronous.controllers.SingleController\", exception=\"NoSuchElementException\", instance=\"192.168.4.197:8080\", job=\"spring_micrometer\", method=\"getOneByApiId\", used=\"true\"}"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#ffffff",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "__systemRef": "hideSeriesFrom",
+            "matcher": {
+              "id": "byNames",
+              "options": {
+                "mode": "exclude",
+                "names": [
+                  "{class=\"ru.etu.stud.java.synchronous.controllers.SingleController\", exception=\"NoSuchElementException\", instance=\"192.168.4.197:8080\", job=\"spring_micrometer\", method=\"getOneByApiId\", used=\"true\"}"
+                ],
+                "prefix": "All except:",
+                "readOnly": true
+              }
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": true
+                }
+              }
+            ]
           }
         ]
       },
@@ -896,7 +1086,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 22
+        "y": 35
       },
       "id": 193,
       "options": {
@@ -918,7 +1108,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "increase(synchronous_controller_one_seconds_sum[5m]) / increase(synchronous_controller_one_seconds_count[5m])",
+          "expr": "increase(synchronous_controller_one_seconds_sum{exception=\"none\"}[5m]) / increase(synchronous_controller_one_seconds_count{exception=\"none\"}[5m])",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
@@ -1005,7 +1195,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 22
+        "y": 35
       },
       "id": 194,
       "options": {
@@ -1106,6 +1296,21 @@
                 }
               }
             ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{class=\"ru.etu.stud.java.synchronous.controllers.SingleController\", exception=\"none\", instance=\"192.168.4.197:8080\", job=\"spring_micrometer\", method=\"getOneByApiId\", used=\"true\"}"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#fcfcfc",
+                  "mode": "fixed"
+                }
+              }
+            ]
           }
         ]
       },
@@ -1113,7 +1318,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 30
+        "y": 43
       },
       "id": 196,
       "options": {
@@ -1135,13 +1340,13 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "increase(reactive_controller_one_seconds_sum[5m]) / increase(reactive_controller_one_seconds_count[5m])",
+          "expr": "increase(synchronous_controller_one_seconds_sum{exception=\"none\"}[5m]) / increase(synchronous_controller_one_seconds_count{exception=\"none\"}[5m])",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
         }
       ],
-      "title": "Get one mean process time (Reactive)",
+      "title": "Get one mean process time (Synchronous)",
       "type": "timeseries"
     },
     {
@@ -1221,7 +1426,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 30
+        "y": 43
       },
       "id": 197,
       "options": {
@@ -1438,6 +1643,6 @@
   "timezone": "browser",
   "title": "Synchronous vs reactive: synchronous",
   "uid": "e6284b65-79fd-498f-afac-edb2b69b8671",
-  "version": 7,
+  "version": 17,
   "weekStart": ""
 }
