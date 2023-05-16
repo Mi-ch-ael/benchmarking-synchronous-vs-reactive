@@ -22,7 +22,7 @@ public class SingleService {
     }
     public DatabaseEntity getData(long id) {
         cpuTimeHolder.startMeasure(Thread.currentThread());
-        DatabaseEntity response = repository.findByTextId(id).orElseThrow();
+        DatabaseEntity response = repository.findById(id).orElseThrow();
         cpuTimeHolder.endMeasure(Thread.currentThread(), actionTypesToTimerNames.get("one"));
         return response;
     }

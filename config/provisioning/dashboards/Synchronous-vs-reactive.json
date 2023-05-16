@@ -31,12 +31,12 @@
       }
     ]
   },
-  "description": "Dashboard with research metrics of synchronous prototype",
+  "description": "Dashboard with research metrics",
   "editable": true,
   "fiscalYearStartMonth": 0,
   "gnetId": 4701,
   "graphTooltip": 1,
-  "id": 1,
+  "id": 2,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -178,7 +178,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "increase(synchronous_db_wait_one_seconds_sum{ instance=\"192.168.4.197:8080\"}[5m]) / on(instance) increase(synchronous_controller_one_seconds_sum{ instance=\"192.168.4.197:8080\",exception=\"none\"}[5m])",
+          "expr": "increase(synchronous_db_wait_one_seconds_sum{ instance=\"host.docker.internal:8080\"}[5m]) / on(instance) increase(synchronous_controller_one_seconds_sum{ instance=\"host.docker.internal:8080\",exception=\"none\"}[5m])",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
@@ -418,7 +418,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "increase(synchronous_db_wait_one_seconds_sum{ instance=\"192.168.4.197:8080\"}[5m]) / on(instance) increase(synchronous_controller_one_seconds_sum{ instance=\"192.168.4.197:8080\",exception=\"none\"}[5m])",
+          "expr": "increase(synchronous_db_wait_one_seconds_sum{ instance=\"host.docker.internal:8080\"}[5m]) / on(instance) increase(synchronous_controller_one_seconds_sum{ instance=\"host.docker.internal:8080\",exception=\"none\"}[5m])",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
@@ -638,9 +638,9 @@
         ]
       },
       "gridPos": {
-        "h": 12,
-        "w": 19,
-        "x": 2,
+        "h": 11,
+        "w": 16,
+        "x": 0,
         "y": 14
       },
       "id": 201,
@@ -673,12 +673,272 @@
       "type": "timeseries"
     },
     {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 16,
+        "y": 14
+      },
+      "id": 202,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value"
+      },
+      "pluginVersion": "9.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "process_cpu_usage{instance=\"host.docker.internal:8080\"}",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Avg CPU synchronous",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 20,
+        "y": 14
+      },
+      "id": 203,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "stdDev"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value"
+      },
+      "pluginVersion": "9.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "process_cpu_usage{instance=\"host.docker.internal:8080\"}",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Stdev CPU synchronous",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 16,
+        "y": 19
+      },
+      "id": 204,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value"
+      },
+      "pluginVersion": "9.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "process_cpu_usage{instance=\"host.docker.internal:8090\"}",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Avg CPU reactive",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 20,
+        "y": 19
+      },
+      "id": 205,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "stdDev"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value"
+      },
+      "pluginVersion": "9.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "process_cpu_usage{instance=\"host.docker.internal:8090\"}",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Stdev CPU reactive",
+      "type": "stat"
+    },
+    {
       "collapsed": false,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 26
+        "y": 25
       },
       "id": 195,
       "panels": [],
@@ -792,7 +1052,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 27
+        "y": 26
       },
       "id": 198,
       "options": {
@@ -830,6 +1090,18 @@
           "legendFormat": "__auto",
           "range": true,
           "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "increase(reactive_first_publish_one_seconds_sum[5m]) / increase(reactive_first_publish_one_seconds_count[5m])",
+          "hide": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "C"
         }
       ],
       "title": "Get one mean process time",
@@ -927,7 +1199,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 27
+        "y": 26
       },
       "id": 199,
       "options": {
@@ -965,6 +1237,18 @@
           "legendFormat": "__auto",
           "range": true,
           "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "increase(reactive_first_publish_all_seconds_sum[5m]) / increase(reactive_first_publish_all_seconds_count[5m])",
+          "hide": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "C"
         }
       ],
       "title": "Get all mean process time",
@@ -1086,7 +1370,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 35
+        "y": 34
       },
       "id": 193,
       "options": {
@@ -1195,7 +1479,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 35
+        "y": 34
       },
       "id": 194,
       "options": {
@@ -1318,7 +1602,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 43
+        "y": 42
       },
       "id": 196,
       "options": {
@@ -1340,13 +1624,13 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "increase(synchronous_controller_one_seconds_sum{exception=\"none\"}[5m]) / increase(synchronous_controller_one_seconds_count{exception=\"none\"}[5m])",
+          "expr": "increase(reactive_controller_one_seconds_sum{}[5m]) / increase(reactive_controller_one_seconds_count{}[5m])",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
         }
       ],
-      "title": "Get one mean process time (Synchronous)",
+      "title": "Get one mean process time (Reactive)",
       "type": "timeseries"
     },
     {
@@ -1426,7 +1710,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 43
+        "y": 42
       },
       "id": 197,
       "options": {
@@ -1641,8 +1925,8 @@
     ]
   },
   "timezone": "browser",
-  "title": "Synchronous vs reactive: synchronous",
-  "uid": "e6284b65-79fd-498f-afac-edb2b69b8671",
-  "version": 17,
+  "title": "Synchronous vs reactive",
+  "uid": "e6284b65-79fd-498f-afac-edb2b69b8670",
+  "version": 4,
   "weekStart": ""
 }

@@ -14,14 +14,12 @@ public class SingleController {
     public  SingleController(SingleService singleService) {
         this.singleService = singleService;
     }
-    @Timed(percentiles = {0.5, 0.75, 0.95, 0.99}, value = "synchronous.controller.one"/*,
-            extraTags = {"operation_type", "one"}*/)
+    @Timed(percentiles = {0.5, 0.75, 0.95, 0.99}, value = "synchronous.controller.one")
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public DatabaseEntity getOneByApiId(@PathVariable long id) {
         return singleService.getData(id);
     }
-    @Timed(percentiles = {0.5, 0.75, 0.95, 0.99}, value = "synchronous.controller.all"/*,
-        extraTags = {"operation_type", "all"}*/)
+    @Timed(percentiles = {0.5, 0.75, 0.95, 0.99}, value = "synchronous.controller.all")
     @GetMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
     public Iterable<DatabaseEntity> getAll() {
         return singleService.getData();
