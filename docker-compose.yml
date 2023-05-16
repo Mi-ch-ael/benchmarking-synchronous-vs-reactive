@@ -32,6 +32,8 @@ services:
     image: prom/prometheus
     hostname: prometheus
     container_name: prometheus
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     ports:
       - "9090:9090"
     networks:
