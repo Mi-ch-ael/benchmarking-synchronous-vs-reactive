@@ -13,4 +13,4 @@ management:
         include: info, health, metrics, prometheus, metric
 logging:
   level:
-    ru.etu.stud.java.synchronous.tools: DEBUG
+    ru.etu.stud.java.synchronous.tools: INFO

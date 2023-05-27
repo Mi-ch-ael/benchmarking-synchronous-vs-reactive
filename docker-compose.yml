@@ -11,6 +11,7 @@ services:
       - POSTGRES_PASSWORD=root
     networks:
       - migrations-network
+    restart: unless-stopped
   liquibase-migrations:
     image: liquibase/liquibase:4.18
     depends_on:
@@ -32,6 +33,7 @@ services:
     image: prom/prometheus
     hostname: prometheus
     container_name: prometheus
+    restart: unless-stopped
     extra_hosts:
       - "host.docker.internal:host-gateway"
     ports:
@@ -49,6 +51,7 @@ services:
       - metrics-display-network
     volumes:
       - ./config/grafana:/var/lib/grafana:rw
+    restart: unless-stopped
     environment:
       - GF_SECURITY_ADMIN_USER=root
       - GF_SECURITY_ADMIN_PASSWORD=root
